@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="khizdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Emp">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="int" Nullable="false" />
+          <Property Name="PName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Cost" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+        </EntityType>
+        <EntityType Name="Stockss">
+          <Key>
+            <PropertyRef Name="StoID" />
+          </Key>
+          <Property Name="StoID" Type="int" Nullable="false" />
+          <Property Name="Availabilit" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ProID" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Table_1">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="255" />
+          <Property Name="EmployeeSalary" Type="varchar" MaxLength="255" />
+          <Property Name="EmployeeCity" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__Emp__EmployeeID__440B1D61">
+          <End Role="Table_1" Type="Self.Table_1" Multiplicity="0..1" />
+          <End Role="Emp" Type="Self.Emp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_1">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Emp">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stockss__ProID__46E78A0C">
+          <End Role="Emp" Type="Self.Emp" Multiplicity="0..1" />
+          <End Role="Stockss" Type="Self.Stockss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emp">
+              <PropertyRef Name="ProID" />
+            </Principal>
+            <Dependent Role="Stockss">
+              <PropertyRef Name="ProID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="khizdbModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emp" EntityType="Self.Emp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stockss" EntityType="Self.Stockss" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_1" EntityType="Self.Table_1" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Emp__EmployeeID__440B1D61" Association="Self.FK__Emp__EmployeeID__440B1D61">
+            <End Role="Table_1" EntitySet="Table_1" />
+            <End Role="Emp" EntitySet="Emp" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stockss__ProID__46E78A0C" Association="Self.FK__Stockss__ProID__46E78A0C">
+            <End Role="Emp" EntitySet="Emp" />
+            <End Role="Stockss" EntitySet="Stockss" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="khizdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Emp">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="Int32" Nullable="false" />
+          <Property Name="PName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cost" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <NavigationProperty Name="Table_1" Relationship="Self.FK__Emp__EmployeeID__440B1D61" FromRole="Emp" ToRole="Table_1" />
+          <NavigationProperty Name="Stocksses" Relationship="Self.FK__Stockss__ProID__46E78A0C" FromRole="Emp" ToRole="Stockss" />
+        </EntityType>
+        <EntityType Name="Stockss">
+          <Key>
+            <PropertyRef Name="StoID" />
+          </Key>
+          <Property Name="StoID" Type="Int32" Nullable="false" />
+          <Property Name="Availabilit" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProID" Type="Int32" />
+          <NavigationProperty Name="Emp" Relationship="Self.FK__Stockss__ProID__46E78A0C" FromRole="Stockss" ToRole="Emp" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Table_1">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeSalary" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeCity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Emps" Relationship="Self.FK__Emp__EmployeeID__440B1D61" FromRole="Table_1" ToRole="Emp" />
+        </EntityType>
+        <Association Name="FK__Emp__EmployeeID__440B1D61">
+          <End Role="Table_1" Type="Self.Table_1" Multiplicity="0..1" />
+          <End Role="Emp" Type="Self.Emp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_1">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Emp">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stockss__ProID__46E78A0C">
+          <End Role="Emp" Type="Self.Emp" Multiplicity="0..1" />
+          <End Role="Stockss" Type="Self.Stockss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emp">
+              <PropertyRef Name="ProID" />
+            </Principal>
+            <Dependent Role="Stockss">
+              <PropertyRef Name="ProID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="khizdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Emps" EntityType="Self.Emp" />
+          <EntitySet Name="Stocksses" EntityType="Self.Stockss" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Table_1" EntityType="Self.Table_1" />
+          <AssociationSet Name="FK__Emp__EmployeeID__440B1D61" Association="Self.FK__Emp__EmployeeID__440B1D61">
+            <End Role="Table_1" EntitySet="Table_1" />
+            <End Role="Emp" EntitySet="Emps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stockss__ProID__46E78A0C" Association="Self.FK__Stockss__ProID__46E78A0C">
+            <End Role="Emp" EntitySet="Emps" />
+            <End Role="Stockss" EntitySet="Stocksses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="khizdbModelStoreContainer" CdmEntityContainer="khizdbEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="khizdbModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emps">
+            <EntityTypeMapping TypeName="khizdbModel.Emp">
+              <MappingFragment StoreEntitySet="Emp">
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="PName" ColumnName="PName" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocksses">
+            <EntityTypeMapping TypeName="khizdbModel.Stockss">
+              <MappingFragment StoreEntitySet="Stockss">
+                <ScalarProperty Name="StoID" ColumnName="StoID" />
+                <ScalarProperty Name="Availabilit" ColumnName="Availabilit" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="khizdbModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_1">
+            <EntityTypeMapping TypeName="khizdbModel.Table_1">
+              <MappingFragment StoreEntitySet="Table_1">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeSalary" ColumnName="EmployeeSalary" />
+                <ScalarProperty Name="EmployeeCity" ColumnName="EmployeeCity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
